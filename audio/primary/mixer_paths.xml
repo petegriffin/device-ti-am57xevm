@@ -1,0 +1,31 @@
+<mixer>
+
+<!-- Card default routes -->
+
+<!-- Capture: Mic -->
+<ctl name="Left PGA Mixer Mic3L Switch" value="1" />
+<ctl name="Right PGA Mixer Mic3R Switch" value="1" />
+<ctl name="PGA Capture Switch" value="1" />
+<ctl name="PGA Capture Volume" value="24" />
+<ctl name="Left Line1L Mux" value="single-ended" />
+<ctl name="Right Line1L Mux" value="single-ended" />
+<ctl name="Left Line1R Mux" value="single-ended" />
+<ctl name="Right Line1R Mux" value="single-ended" />
+
+<!-- Playback: Line-Out and Headphone -->
+<ctl name="Left DAC Mux" value="DAC_L1" />
+<ctl name="Right DAC Mux" value="DAC_R1" />
+<ctl name="PCM Playback Volume" value="127" />
+
+<ctl name="Left HP Mixer DACL1 Switch" value="1" />
+<ctl name="Right HP Mixer DACR1 Switch" value="1" />
+<ctl name="HP Playback Switch" value="1" />
+<ctl name="HP DAC Playback Volume" value="118" />
+<ctl name="Output Driver Power-On time" value="200ms" />
+
+<ctl name="Left Line Mixer DACL1 Switch" value="1" />
+<ctl name="Right Line Mixer DACR1 Switch" value="1" />
+<ctl name="Line Playback Switch" value="1" />
+<ctl name="Line DAC Playback Volume" value="118" />
+
+</mixer>
