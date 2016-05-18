@@ -53,7 +53,7 @@ on boot
 
 on fs
     mkdir /factory 0775 radio radio
-    mount_all /fstab.am57xevmevmboard
+    mount_all /fstab.am57xevmboard
 
 # take a wakelock on boot until PM is working
     write /sys/power/wake_lock hack
