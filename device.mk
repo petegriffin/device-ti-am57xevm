@@ -95,6 +95,7 @@ PRODUCT_PACKAGES += \
 	iontest \
 	ion_ti_test2 \
 	vpetest \
+	modetest \
 	libdrm
 
 # Audio HAL modules
