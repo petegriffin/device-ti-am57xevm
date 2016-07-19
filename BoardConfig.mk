@@ -76,3 +76,7 @@ COMMON_GLOBAL_CFLAGS += -DANDROID_LIB_STUB
 endif
 
 BOARD_SEPOLICY_DIRS := device/ti/am57xevm/sepolicy
+
+# lidbrm driver
+BOARD_GPU_DRIVERS := omapdrm
+
