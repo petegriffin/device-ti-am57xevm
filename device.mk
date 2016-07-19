@@ -47,6 +47,11 @@ PRODUCT_COPY_FILES += \
 	device/ti/am57xevm/audio/primary/mixer_paths.xml:system/etc/mixer_paths.xml \
 	device/ti/am57xevm/audio/audio_policy.conf:system/etc/audio_policy.conf
 
+# cpuset configuration
+PRODUCT_COPY_FILES += \
+	device/ti/jacinto6evm/init.jacinto6evmboard.cpuset.sh:system/bin/init.jacinto6evmboard.cpuset.sh
+
+
 PRODUCT_PROPERTY_OVERRIDES := \
 	hwui.render_dirty_regions=false
 
