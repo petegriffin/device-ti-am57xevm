@@ -1,4 +1,4 @@
-import init.am57xevmboard.usb.rc
+import /init.am57xevmboard.usb.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug

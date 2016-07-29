@@ -17,12 +17,12 @@ on boot
     mkdir /dev/usb-ffs 0770 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
-    
+
     # Create MTP and PTP functions
     mkdir /config/usb_gadget/g1/functions/mtp.gs0 0770 shell shell
     mkdir /config/usb_gadget/g1/functions/ptp.gs1 0770 shell shell
 
-    setprop sys.usb.controller 48890000.usb
+    setprop sys.usb.controller 488d0000.usb
     setprop sys.usb.configfs 1
 
 on property:sys.usb.config=none && property:sys.usb.configfs=1
