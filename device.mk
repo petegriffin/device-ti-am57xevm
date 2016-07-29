@@ -49,7 +49,7 @@ PRODUCT_COPY_FILES += \
 
 # cpuset configuration
 PRODUCT_COPY_FILES += \
-	device/ti/jacinto6evm/init.jacinto6evmboard.cpuset.sh:system/bin/init.jacinto6evmboard.cpuset.sh
+	device/ti/am57xevm/init.am57xevmboard.cpuset.sh:system/bin/init.am57xevmboard.cpuset.sh
 
 
 PRODUCT_PROPERTY_OVERRIDES := \
