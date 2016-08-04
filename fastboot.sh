@@ -89,7 +89,13 @@ else
 	if [ ${boardrev} = "H" ]; then
 		environment="${PRODUCT_OUT}dra7-evm-lcd-osd.dtb"
 	else
-		environment="${PRODUCT_OUT}dra7-evm-lcd10.dtb"
+		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
+	fi
+fi
+
+if [ ${cpu} = "J6" ]; then
+        if [ ${boardrev} = "A.30" ]; then
+                environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
 	fi
 fi
 
@@ -143,8 +149,8 @@ fi
 echo "Create GPT partition table"
 ${FASTBOOT} oem format
 
-echo "Setting target for bootloader to SPI"
-${FASTBOOT} oem spi
+echo "Setting target for bootloader to emmc"
+${FASTBOOT} oem mmc
 
 sleep 3
 
