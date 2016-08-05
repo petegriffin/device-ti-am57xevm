@@ -3,11 +3,6 @@ import /init.am57xevmboard.usb.rc
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
-on fs
-# symlink graphics libraries
-    symlink /system/vendor/lib/hw/gralloc.jacinto6.so /system/vendor/lib/hw/gralloc.am57x.so
-    symlink /system/vendor/lib/hw/memtrack.jacinto6.so /system/vendor/lib/hw/memtrack.am57x.so
-
 on init
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
