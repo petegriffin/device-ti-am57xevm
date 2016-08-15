@@ -96,6 +96,10 @@ fi
 if [ ${cpu} = "J6" ]; then
         if [ ${boardrev} = "A.30" ]; then
                 environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
+	elif [ ${boardrev} = "1.3A" ]; then
+		environment="${PRODUCT_OUT}am572x-idk-lcd-osd.dtb"
+	elif [ ${boardrev} = "B.10" ]; then
+		environment="${PRODUCT_OUT}am57xx-beagle-x15-revb1.dtb"
 	fi
 fi
 
