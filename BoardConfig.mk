@@ -82,6 +82,33 @@ endif
 BOARD_SEPOLICY_DIRS += \
 	 device/ti/am57xevm/sepolicy \
 
+ifeq ($(TARGET_BUILD_KERNEL), true)
+## Kernel Config
+## need to be generated automatically
+KERNEL_CONFIG := 	arch/arm/configs/multi_v7_defconfig \
+					ti_config_fragments/multi_v7_prune.cfg \
+					ti_config_fragments/baseport.cfg \
+					ti_config_fragments/ipc.cfg \
+					ti_config_fragments/connectivity.cfg \
+					ti_config_fragments/audio_display.cfg \
+					ti_config_fragments/wlan.cfg \
+					ti_config_fragments/omap_soc.cfg \
+					ti_config_fragments/lpae.cfg \
+					ti_config_fragments/dra7_only.cfg \
+					ti_config_fragments/systemd.cfg \
+					android/configs/android-base.cfg \
+					android/configs/android-recommended.cfg \
+					ti_config_fragments/auto.cfg \
+					ti_config_fragments/android_omap.cfg \
+					ti_config_fragments/android_am57x.cfg \
+
+ANDROID_64 := false
+# Kernel Source and Device Tree
+TARGET_KERNEL_SOURCE ?= kernel/ti/x15
+DEVICE_TREES := am57xx-evm-reva3:am57xx-evm-reva3.dtb
+BUILD_KERNEL_MODULES := false
+KERNEL_TARGET := zImage dtbs modules
+endif
 # lidbrm driver
 BOARD_GPU_DRIVERS := omapdrm
 

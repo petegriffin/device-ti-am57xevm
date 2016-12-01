@@ -14,10 +14,16 @@
 # limitations under the License.
 #
 
+ifneq ($(TARGET_BUILD_KERNEL), true)
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := $(KERNELDIR)/arch/arm/boot/zImage
 else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+else
+REALTOP := $(realpath $(TOP))
+KERNELDIR := $(REALTOP)/out/target/product/am57xevm/obj/kernel
 endif
 
 USE_XML_AUDIO_POLICY_CONF := 1
@@ -40,8 +46,7 @@ PRODUCT_PACKAGES += \
    android.hardware.camera.provider@2.4-impl \
    android.hardware.camera.provider@2.4-service
 
-PRODUCT_COPY_FILES := \
-	$(LOCAL_KERNEL):kernel \
+PRODUCT_COPY_FILES += \
 	device/ti/am57xevm/tablet_core_hardware_am57xevm.xml:system/etc/permissions/tablet_core_hardware_am57xevm.xml \
 	device/ti/am57xevm/manifest.xml:vendor/manifest.xml \
 	device/ti/am57xevm/init.am57xevmboard.rc:root/init.am57xevmboard.rc \
