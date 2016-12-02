@@ -1543,6 +1543,7 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
 {
     struct j6_audio_device *adev = (struct j6_audio_device *)dev;
     struct j6_stream_in *in;
+    int buffer_size;
     int ret;
 
     UNUSED(handle);
@@ -1590,21 +1591,10 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     /* in-place stereo-to-mono remix since capture stream is stereo */
     if (in->requested_channels == 1) {
         ALOGV("adev_open_input_stream() stereo-to-mono remix needed");
-
-        /*
-         * buffer size is already enough to allow stereo-to-mono remix
-         * and resample if needed
-         */
-        in->buffer = malloc(2 * in->config.period_size * in->hw_frame_size);
-        if (!in->buffer) {
-            ret = -ENOMEM;
-            goto err1;
-        }
-
         ret = setup_stereo_to_mono_input_remix(in);
         if (ret) {
             ALOGE("adev_open_input_stream() failed to setup remix %d", ret);
-            goto err2;
+            goto err1;
         }
     }
 
@@ -1622,6 +1612,24 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
                                &in->resampler);
         if (ret) {
             ALOGE("adev_open_input_stream() failed to create resampler %d", ret);
+            goto err2;
+        }
+    }
+
+    /*
+     * buffer size needs to be enough to allow stereo-to-mono remix
+     * and resample if needed
+     */
+    if (in->resampler || in->remix) {
+        buffer_size = in->config.period_size * in->hw_frame_size;
+        if (in->resampler)
+            buffer_size *= 2;
+        if (in->remix)
+            buffer_size *= 2;
+
+        in->buffer = malloc(buffer_size);
+        if (!in->buffer) {
+            ret = -ENOMEM;
             goto err3;
         }
     }
@@ -1631,9 +1639,9 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     return 0;
 
  err3:
-    free(in->remix);
+    release_resampler(in->resampler);
  err2:
-    free(in->buffer);
+    free(in->remix);
  err1:
     free(in);
     return ret;
@@ -1651,17 +1659,13 @@ static void adev_close_input_stream(struct audio_hw_device *dev,
 
     if (in->resampler)
         release_resampler(in->resampler);
-    in->resampler = NULL;
 
     if (in->remix)
         free(in->remix);
-    in->remix = NULL;
-
-    in->dev = NULL;
-    adev->in = NULL;
 
     free(in->buffer);
     free(in);
+    adev->in = NULL;
 }
 
 static int adev_dump(const audio_hw_device_t *device, int fd)
