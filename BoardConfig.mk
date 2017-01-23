@@ -112,6 +112,13 @@ endif
 # lidbrm driver
 BOARD_GPU_DRIVERS := omapdrm
 
+ifeq ($(TARGET_BUILD_UBOOT), true)
+TARGET_USE_UBOOT := true
+USE_PREBUILT_UBOOT ?= false
+TARGET_UBOOT_SOURCE ?= ti/u-boot
+UBOOT_CONFIG ?= am57xx_evm_defconfig
+endif
+
 # DispSync vsync offsets in nanoseconds
 VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
