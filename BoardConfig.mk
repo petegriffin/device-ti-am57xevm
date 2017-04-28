@@ -80,3 +80,6 @@ BOARD_SEPOLICY_DIRS := device/ti/am57xevm/sepolicy
 # lidbrm driver
 BOARD_GPU_DRIVERS := omapdrm
 
+# DispSync vsync offsets in nanoseconds
+VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
