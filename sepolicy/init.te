@@ -2,3 +2,7 @@
 allow init self:capability sys_module;
 #Create symlinks for storage
 allow init tmpfs:lnk_file create_file_perms;
+
+# Configfs
+allow init configfs:file write;
+allow init configfs:lnk_file { create unlink } ;
