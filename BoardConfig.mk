@@ -38,7 +38,7 @@ BOARD_HAVE_BLUETOOTH_TI := false
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/ti/am57xevm/bluetooth
 TARGET_NO_BOOTLOADER := true
 
-BOARD_KERNEL_BASE := 0x80008000
+BOARD_KERNEL_BASE := 0x80000000
 #BOARD_KERNEL_CMDLINE := console=ttyO2,115200n8 mem=1024M androidboot.console=ttyO2 androidboot.hardware=am57xevmboard vram=20M omapfb.vram=0:16M
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x03000000
 
