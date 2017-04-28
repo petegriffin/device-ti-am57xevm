@@ -54,7 +54,6 @@ on boot
     insmod /system/lib/modules/galcore.ko physSize=0xc0000000
 
 on fs
-    mkdir /factory 0775 radio radio
     mount_all /fstab.am57xevmboard
 
 service pvrsrvinit /vendor/bin/pvrsrvinit
