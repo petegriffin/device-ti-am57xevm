@@ -202,3 +202,4 @@ $(call inherit-product-if-exists, device/ti/proprietary-open/jacinto6/ducati-ful
 $(call inherit-product-if-exists, device/ti/proprietary-open/wl12xx/wlan/wl12xx-wlan-fw-products.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/wl12xx/wpan/wl12xx-wpan-fw-products.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/jacinto6/prueth-full_am57xevm.mk)
+$(call inherit-product-if-exists, device/ti/proprietary-open/jacinto6/pru-icss-full_am57xevm.mk)
