@@ -203,7 +203,7 @@ fi
 
 echo "Resizing userdata.img"
 resizefail=0
-userdatasize=`./fastboot getvar userdata_size 2>&1 | grep "userdata_size" | awk '{print$2}'`
+userdatasize=`${FASTBOOT} getvar userdata_size 2>&1 | grep "userdata_size" | awk '{print$2}'`
 if [ -n "$userdatasize" ]; then
 	while [ 1 ];do
 		echo Current userdata partition size=${userdatasize} KB
@@ -215,17 +215,17 @@ if [ -n "$userdatasize" ]; then
 			fi
 		fi
 		mkdir ./data
-		./simg2img userdata.img userdata.img.raw
-		mount -o loop -o grpid -t ext4 ./userdata.img.raw ./data || resizefail=1
+		./simg2img ${userdataimg} ${userdataimg}.raw
+		mount -o loop -o grpid -t ext4 ${userdataimg}.raw ./data || resizefail=1
 		if [ $resizefail -eq 1 ]; then
 			echo "Mount failed" && break
 		fi
-		./make_ext4fs -s -l ${userdatasize}K -a data userdata.img data/
+		./make_ext4fs -s -l ${userdatasize}K -a data ${userdataimg} data/
 		sync
 		umount data
 		sync
 		rm -rf ./data
-		rm userdata.img.raw
+		rm ${userdataimg}.raw
 		break
 	done
 else
