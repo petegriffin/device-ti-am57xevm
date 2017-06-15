@@ -82,6 +82,8 @@ fi
 if [ ${cpu} = "J6ECO" ]; then
 	if [ ${boardrev} = "C" ]; then
 		environment="${PRODUCT_OUT}dra72-evm-lcd-osd.dtb"
+	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
 	else
 		environment="${PRODUCT_OUT}dra72-evm-lcd10.dtb"
 	fi
@@ -96,8 +98,8 @@ fi
 if [ ${cpu} = "J6" ]; then
         if [ ${boardrev} = "A.30" ]; then
                 environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
-	elif [ ${boardrev} = "1.3A" ]; then
-		environment="${PRODUCT_OUT}am572x-idk-lcd-osd.dtb"
+	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+		environment="${PRODUCT_OUT}am572x-idk-lcd-osd101t2587.dtb"
 	elif [ ${boardrev} = "B.10" ]; then
 		environment="${PRODUCT_OUT}am57xx-beagle-x15-revb1.dtb"
 	fi
@@ -157,8 +159,13 @@ fi
 echo "Create GPT partition table"
 ${FASTBOOT} oem format
 
-echo "Setting target for bootloader to emmc"
-${FASTBOOT} oem mmc
+if [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+        echo "Setting target for bootloader to spi"
+        ${FASTBOOT} oem spi
+else
+        echo "Setting target for bootloader to emmc"
+        ${FASTBOOT} oem mmc
+fi
 
 sleep 3
 
