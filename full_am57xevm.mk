@@ -22,11 +22,11 @@
 #
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/ti/am57xevm/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
+$(call inherit-product, device/ti/am57xevm/device.mk)
 
 PRODUCT_NAME := full_am57xevm
 PRODUCT_DEVICE := am57xevm
-PRODUCT_BRAND := Android
+PRODUCT_BRAND := TI
 PRODUCT_MODEL := am57xevm
 PRODUCT_MANUFACTURER := Texas_Instruments_Inc

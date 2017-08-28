@@ -16,7 +16,7 @@
 
 # These two variables are set first, so they can be overridden
 # by BoardConfigVendor.mk
-BOARD_USES_GENERIC_AUDIO := true
+#BOARD_USES_GENERIC_AUDIO := true
 #USE_CAMERA_STUB := true
 OMAP_ENHANCEMENT := true
 
@@ -33,9 +33,9 @@ TARGET_CPU_VARIANT := cortex-a15
 
 ENABLE_CPUSETS := true
 
-BOARD_HAVE_BLUETOOTH := false
-BOARD_HAVE_BLUETOOTH_TI := false
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/ti/am57xevm/bluetooth
+#BOARD_HAVE_BLUETOOTH := false
+#BOARD_HAVE_BLUETOOTH_TI := false
+#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/ti/am57xevm/bluetooth
 TARGET_NO_BOOTLOADER := true
 
 BOARD_KERNEL_BASE := 0x80000000
@@ -75,7 +75,8 @@ BOARD_SOFTAP_DEVICE         := wl12xx_mac80211
 #COMMON_GLOBAL_CFLAGS += -DANDROID_LIB_STUB
 endif
 
-BOARD_SEPOLICY_DIRS := device/ti/am57xevm/sepolicy
+BOARD_SEPOLICY_DIRS += \
+	 device/ti/am57xevm/sepolicy \
 
 # lidbrm driver
 BOARD_GPU_DRIVERS := omapdrm

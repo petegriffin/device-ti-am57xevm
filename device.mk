@@ -20,9 +20,25 @@ else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+PRODUCT_PACKAGES += \
+	android.hardware.wifi@1.0-service \
+	android.hardware.graphics.allocator@2.0-impl \
+	android.hardware.graphics.allocator@2.0-service \
+	android.hardware.graphics.mapper@2.0-impl \
+	android.hardware.memtrack@1.0-impl \
+	android.hardware.usb@1.0-service \
+	android.hardware.power@1.0-impl \
+	android.hardware.audio@2.0-impl \
+	android.hardware.audio.effect@2.0-impl \
+	android.hardware.broadcastradio@1.0-impl \
+	android.hardware.soundtrigger@2.0-impl \
+	android.hardware.keymaster@3.0-impl \
+	android.hardware.keymaster@3.0-service
+
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \
 	device/ti/am57xevm/tablet_core_hardware_am57xevm.xml:system/etc/permissions/tablet_core_hardware_am57xevm.xml \
+	device/ti/am57xevm/manifest.xml:system/vendor/manifest.xml \
 	device/ti/am57xevm/init.am57xevmboard.rc:root/init.am57xevmboard.rc \
 	device/ti/am57xevm/init.am57xevmboard.usb.rc:root/init.am57xevmboard.usb.rc \
 	device/ti/am57xevm/ueventd.am57xevmboard.rc:root/ueventd.am57xevmboard.rc \
@@ -72,10 +88,11 @@ PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=160
+	ro.sf.lcd_density=240
 
 # WI-Fi
 # PRODUCT_PACKAGES += \
+	wificond \
 	wpa_supplicant \
 	wpa_supplicant.conf \
 	wpa_supplicant_overlay.conf \
@@ -91,7 +108,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	wlconf
 
 PRODUCT_PACKAGES += \
-	LegacyCamera \
 	camera_test \
 	ion_tiler_test \
 	iontest \
@@ -129,7 +145,7 @@ PRODUCT_PACKAGES += Launcher3 \
 PRODUCT_PROPERTY_OVERRIDES += \
 	media.aac_51_output_enabled=true
 
-$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
+#$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 $(call inherit-product-if-exists, hardware/ti/dra7xx/am57x.mk)
 #$(call inherit-product-if-exists, hardware/ti/wpan/ti-wpan-products.mk)
 $(call inherit-product-if-exists, device/ti/proprietary-open/jacinto6/ti-jacinto6-vendor.mk)
