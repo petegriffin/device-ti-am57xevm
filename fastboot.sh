@@ -109,7 +109,7 @@ systemimg="${PRODUCT_OUT}system.img"
 userdataimg="${PRODUCT_OUT}userdata.img"
 cacheimg="${PRODUCT_OUT}cache.img"
 recoveryimg="${PRODUCT_OUT}recovery.img"
-
+vendorimg="${PRODUCT_OUT}vendor.img"
 
 # Verify that all the files required for the fastboot flash
 # process are available
@@ -148,6 +148,11 @@ if [ ! -e "${recoveryimg}" ] ; then
   echo "Missing ${recoveryimg}"
   exit -1;
 fi
+if [ ! -e "${vendorimg}" ] ; then
+  echo "Missing ${vendorimg}"
+  exit -1;
+fi
+
 
 echo "Create GPT partition table"
 ${FASTBOOT} oem format
@@ -180,6 +185,7 @@ echo "   environment: ${environment}"
 ${FASTBOOT} flash environment	${environment}
 ${FASTBOOT} flash recovery	${recoveryimg}
 ${FASTBOOT} flash system	${systemimg}
+${FASTBOOT} flash vendor	${vendorimg}
 
 userdataimg_orig="${userdataimg}.orig"
 if [ ! -f $userdataimg_orig ]; then

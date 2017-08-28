@@ -38,7 +38,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \
 	device/ti/am57xevm/tablet_core_hardware_am57xevm.xml:system/etc/permissions/tablet_core_hardware_am57xevm.xml \
-	device/ti/am57xevm/manifest.xml:system/vendor/manifest.xml \
+	device/ti/am57xevm/manifest.xml:vendor/manifest.xml \
 	device/ti/am57xevm/init.am57xevmboard.rc:root/init.am57xevmboard.rc \
 	device/ti/am57xevm/init.am57xevmboard.usb.rc:root/init.am57xevmboard.usb.rc \
 	device/ti/am57xevm/ueventd.am57xevmboard.rc:root/ueventd.am57xevmboard.rc \
