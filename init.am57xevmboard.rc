@@ -52,6 +52,10 @@ on fs
     mkdir /factory 0775 radio radio
     mount_all /fstab.am57xevmboard
 
+# Load modules
+    exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d \
+	/vendor/lib/modules wl18xx.ko wlcore.ko wlcore_sdio.ko
+
 service pvrsrvinit /vendor/bin/pvrsrvinit
     class core
     user root
