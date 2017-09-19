@@ -22,6 +22,10 @@
 #
 
 # Inherit from those products. Most specific first.
+
+PRODUCT_COPY_FILES += \
+	device/generic/car/common/bootanimations/bootanimation-832.zip:system/media/bootanimation.zip
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 $(call inherit-product, device/ti/am57xevm/device.mk)
 
