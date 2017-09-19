@@ -54,7 +54,9 @@ on fs
 
 # Load modules
     exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d \
-	/vendor/lib/modules wl18xx.ko wlcore.ko wlcore_sdio.ko
+	/vendor/lib/modules scsi_mod.ko usb-storage.ko sd_mod.ko \
+
+#	/vendor/lib/modules wl18xx.ko wlcore.ko wlcore_sdio.ko \
 
 service pvrsrvinit /vendor/bin/pvrsrvinit
     class core
