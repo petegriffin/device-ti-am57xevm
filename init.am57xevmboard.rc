@@ -52,6 +52,7 @@ on fs
     mkdir /factory 0775 radio radio
     mount_all /fstab.am57xevmboard
 
+on late-init
 # Load modules
     exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d \
 	/vendor/lib/modules scsi_mod.ko usb-storage.ko sd_mod.ko \
