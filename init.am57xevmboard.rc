@@ -1,7 +1,7 @@
 import /vendor/etc/init/hw/init.am57xevmboard.usb.rc
 
 on early-init
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
+    mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
     # Support legacy paths
@@ -41,15 +41,7 @@ on boot
     chmod 0755 /sys/kernel/debug/tracing
 
 
-    # PRU Eth Modules
-    insmod /system/lib/modules/pruss_intc.ko
-    insmod /system/lib/modules/pruss.ko
-    insmod /system/lib/modules/pru_rproc.ko
-    insmod /system/lib/modules/rpmsg_pru.ko
-    insmod /system/lib/modules/prueth.ko
-
 on fs
-    mkdir /factory 0775 radio radio
     mount_all /fstab.am57xevmboard
 
 on late-init
