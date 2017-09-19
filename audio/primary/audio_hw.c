@@ -140,12 +140,14 @@ struct j6_stream_out {
 static const char *supported_media_cards[] = {
     "dra7evm",
     "VayuEVM",
-    "DRA7xxEVM",
+    "DRA7xx-EVM",
 };
 
 static const char *supported_bt_cards[] = {
     "DRA7xxWiLink",
 };
+
+#define MAX_CARD_COUNT                  10
 
 #define SUPPORTED_IN_DEVICES           (AUDIO_DEVICE_IN_BUILTIN_MIC | \
                                         AUDIO_DEVICE_IN_WIRED_HEADSET | \
@@ -169,6 +171,8 @@ static const char *supported_bt_cards[] = {
 #define BT_PERIOD_SIZE                  80
 #define BT_PERIOD_COUNT                 4
 #define BT_BUFFER_SIZE                  (BT_PERIOD_SIZE * BT_PERIOD_COUNT)
+
+#define MIXER_XML_PATH                  "/vendor/etc/mixer_paths.xml"
 
 struct pcm_config pcm_config_capture = {
     .channels        = 2,
@@ -206,6 +210,40 @@ struct pcm_config pcm_config_bt_out = {
     .period_size     = BT_PERIOD_SIZE,
     .period_count    = BT_PERIOD_COUNT,
 };
+
+static int find_card_index(const char *supported_cards[], int num_supported)
+{
+    struct mixer *mixer;
+    const char *name;
+    int card = 0;
+    int found = 0;
+    int i;
+
+    do {
+        /* returns an error after last valid card */
+        mixer = mixer_open(card);
+        if (!mixer)
+            break;
+
+        name = mixer_get_name(mixer);
+
+        for (i = 0; i < num_supported; ++i) {
+            if (supported_cards[i] && !strcmp(name, supported_cards[i])) {
+                ALOGV("Supported card '%s' found at %d", name, card);
+                found = 1;
+                break;
+            }
+        }
+
+        mixer_close(mixer);
+    } while (!found && (card++ < MAX_CARD_COUNT));
+
+    /* Use default card number if not found */
+    if (!found)
+        card = 0;
+
+    return card;
+}
 
 static void do_out_standby(struct j6_stream_out *out);
 
@@ -1212,8 +1250,8 @@ static ssize_t read_frames(struct j6_stream_in *in, void *buffer, ssize_t frames
                     &frames_rd);
         } else {
             struct resampler_buffer buf = {
-                    { raw : NULL, },
-                    frame_count : frames_rd,
+                    { .raw = NULL, },
+                    .frame_count = frames_rd,
             };
             get_next_buffer(&in->buf_provider, &buf);
             if (buf.raw) {
@@ -1729,11 +1767,14 @@ static int adev_open(const hw_module_t* module, const char* name,
 
     adev->in_device = AUDIO_DEVICE_IN_BUILTIN_MIC;
     adev->out_device = AUDIO_DEVICE_OUT_SPEAKER;
-    adev->card = 0;
+    adev->card = find_card_index(supported_media_cards,
+                                 ARRAY_SIZE(supported_media_cards));
     adev->in_port = 0;
     adev->out_port = 0;
     ALOGI("Media card is hw:%d\n", adev->card);
-    adev->bt_card=2;	
+
+    adev->bt_card = find_card_index(supported_bt_cards,
+                                    ARRAY_SIZE(supported_bt_cards));
     adev->bt_port = 0;
     ALOGI("Bluetooth SCO card is hw:%d\n", adev->bt_card);
 
@@ -1741,7 +1782,7 @@ static int adev_open(const hw_module_t* module, const char* name,
     adev->in_call = false;
     adev->mode = AUDIO_MODE_NORMAL;
 
-    adev->route = audio_route_init(adev->card, NULL);
+    adev->route = audio_route_init(adev->card, MIXER_XML_PATH);
     if (!adev->route) {
         ALOGE("Unable to initialize audio routes");
         free(adev);

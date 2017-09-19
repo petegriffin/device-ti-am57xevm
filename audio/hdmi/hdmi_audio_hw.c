@@ -51,12 +51,7 @@
 
 #define UNUSED(x) (void)(x)
 
-/* XXX TODO: Dynamically detect the HDMI card
- * E.g. if a USB device is plugged in at boot time,
- * it sometimes takes the card #1 slot and puts us
- * on card #2.
- */
-#define HDMI_PCM_CARD 1
+#define MAX_CARD_COUNT 10
 #define HDMI_PCM_DEV 0
 #define HDMI_SAMPLING_RATE 44100
 #define HDMI_PERIOD_SIZE 1920
@@ -322,9 +317,40 @@ int hdmi_out_set_volume(struct audio_stream_out *stream, float left, float right
     return -ENOSYS;
 }
 
+static int hdmi_out_find_card(void)
+{
+    struct mixer *mixer;
+    const char *name;
+    int card = 0;
+    int found = 0;
+    int i;
+
+    do {
+        /* returns an error after last valid card */
+        mixer = mixer_open(card);
+        if (!mixer)
+            break;
+
+        name = mixer_get_name(mixer);
+
+        if (strstr(name, "HDMI") || strstr(name, "hdmi")) {
+            TRACEM("HDMI card '%s' found at %d", name, card);
+            found = 1;
+        }
+
+        mixer_close(mixer);
+    } while (!found && (card++ < MAX_CARD_COUNT));
+
+    /* Use default card number if not found */
+    if (!found)
+        card = 1;
+
+    return card;
+}
+
 static int hdmi_out_open_pcm(hdmi_out_t *out)
 {
-    int card = HDMI_PCM_CARD;
+    int card = hdmi_out_find_card();
     int dev = HDMI_PCM_DEV;
     int ret;
 

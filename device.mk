@@ -62,8 +62,8 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-	device/ti/am57xevm/audio/primary/mixer_paths.xml:system/etc/mixer_paths.xml \
-	device/ti/am57xevm/audio/audio_policy.conf:system/etc/audio_policy.conf
+	device/ti/am57xevm/audio/primary/mixer_paths.xml:vendor/etc/mixer_paths.xml \
+	device/ti/am57xevm/audio/audio_policy.conf:vendor/etc/audio_policy.conf
 
 # cpuset configuration
 PRODUCT_COPY_FILES += \
