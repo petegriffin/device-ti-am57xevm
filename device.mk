@@ -21,20 +21,20 @@ LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
 PRODUCT_PACKAGES += \
-	android.hardware.wifi@1.0-service \
-	android.hardware.graphics.allocator@2.0-impl \
-	android.hardware.graphics.allocator@2.0-service \
-	android.hardware.graphics.mapper@2.0-impl \
-	android.hardware.memtrack@1.0-impl \
-	android.hardware.usb@1.0-service \
-	android.hardware.power@1.0-impl \
-	android.hardware.audio@2.0-impl \
-	android.hardware.audio@2.0-service \
-	android.hardware.audio.effect@2.0-impl \
-	android.hardware.broadcastradio@1.0-impl \
-	android.hardware.soundtrigger@2.0-impl \
-	android.hardware.keymaster@3.0-impl \
-	android.hardware.keymaster@3.0-service
+   android.hardware.wifi@1.0-service \
+   android.hardware.graphics.allocator@2.0-impl \
+   android.hardware.graphics.allocator@2.0-service \
+   android.hardware.graphics.mapper@2.0-impl \
+   android.hardware.memtrack@1.0-impl \
+   android.hardware.usb@1.0-service \
+   android.hardware.power@1.0-impl \
+   android.hardware.audio@2.0-impl \
+   android.hardware.audio@2.0-service \
+   android.hardware.audio.effect@2.0-impl \
+   android.hardware.broadcastradio@1.0-impl \
+   android.hardware.soundtrigger@2.0-impl \
+   android.hardware.keymaster@3.0-impl \
+   android.hardware.keymaster@3.0-service
 
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \

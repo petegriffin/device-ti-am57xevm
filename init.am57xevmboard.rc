@@ -47,9 +47,7 @@ on fs
 on late-init
 # Load modules
     exec u:r:modprobe:s0 -- /system/bin/modprobe -a -d \
-	/vendor/lib/modules scsi_mod.ko usb-storage.ko sd_mod.ko \
-
-#	/vendor/lib/modules wl18xx.ko wlcore.ko wlcore_sdio.ko \
+         /vendor/lib/modules scsi_mod.ko usb-storage.ko sd_mod.ko
 
 service pvrsrvinit /vendor/bin/pvrsrvinit
     class core
@@ -118,18 +116,3 @@ service hostapd_bin /system/bin/hostapd -d /data/misc/wifi/hostapd.conf
     class main
     disabled
     oneshot
-
-service lad_dra7xx /system/bin/lad_dra7xx -g
-    class main
-    user media
-    group system
-    disabled
-    oneshot
-
-# service radio_app /system/bin/RadioApp -h eth
-#    class main
-#    user media
-#    group system inet
-#    disabled
-#    oneshot
-
