@@ -42,7 +42,7 @@ on boot
 
 
 on fs
-    mount_all /fstab.am57xevmboard
+    mount_all /vendor/etc/fstab.am57xevmboard
 
 on late-init
 # Load modules
