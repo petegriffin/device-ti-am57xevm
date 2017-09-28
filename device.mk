@@ -20,6 +20,8 @@ else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+USE_XML_AUDIO_POLICY_CONF := 1
+
 PRODUCT_PACKAGES += \
    android.hardware.wifi@1.0-service \
    android.hardware.graphics.allocator@2.0-impl \
@@ -63,8 +65,14 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-	device/ti/am57xevm/audio/primary/mixer_paths.xml:vendor/etc/mixer_paths.xml \
-	device/ti/am57xevm/audio/audio_policy.conf:vendor/etc/audio_policy.conf
+	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
+	frameworks/av/services/audiopolicy/config/default_volume_tables.xml:system/etc/default_volume_tables.xml \
+	frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:system/etc/audio_policy_volumes.xml \
+	device/ti/am57xevm/audio/primary/mixer_paths.xml:system/etc/mixer_paths.xml \
+	device/ti/am57xevm/audio/primary/audio_policy_configuration.xml:system/etc/primary_audio_policy_configuration.xml \
+	device/ti/am57xevm/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml
 
 # cpuset configuration
 PRODUCT_COPY_FILES += \
