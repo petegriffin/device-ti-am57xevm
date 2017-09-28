@@ -104,6 +104,12 @@ BOARD_VENDOR_KERNEL_MODULES := \
 	$(KERNELDIR)/drivers/video/backlight/gpio_backlight.ko \
 	$(KERNELDIR)/drivers/video/backlight/led_bl.ko \
 	$(KERNELDIR)/drivers/video/backlight/pwm_bl.ko \
+	$(KERNELDIR)/drivers/input/input-polldev.ko \
+	$(KERNELDIR)/drivers/input/touchscreen/edt-ft5x06.ko \
+	$(KERNELDIR)/drivers/input/touchscreen/goodix.ko \
+	$(KERNELDIR)/drivers/input/touchscreen/atmel_mxt_ts.ko \
+	$(KERNELDIR)/drivers/input/touchscreen/ldc3001_ts.ko \
+	$(KERNELDIR)/drivers/input/touchscreen/pixcir_i2c_ts.ko
 #	$(KERNELDIR)/drivers/net/wireless/ti/wl18xx/wl18xx.ko \
 #	$(KERNELDIR)/drivers/net/wireless/ti/wlcore/wlcore.ko \
 #	$(KERNELDIR)/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko
