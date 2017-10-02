@@ -40,9 +40,9 @@ PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \
 	device/ti/am57xevm/tablet_core_hardware_am57xevm.xml:system/etc/permissions/tablet_core_hardware_am57xevm.xml \
 	device/ti/am57xevm/manifest.xml:vendor/manifest.xml \
-	device/ti/am57xevm/init.am57xevmboard.rc:vendor/etc/init/hw/init.am57xevmboard.rc \
-	device/ti/am57xevm/init.am57xevmboard.usb.rc:vendor/etc/init/hw/init.am57xevmboard.usb.rc \
-	device/ti/am57xevm/ueventd.am57xevmboard.rc:vendor/ueventd.rc \
+	device/ti/am57xevm/init.am57xevmboard.rc:root/init.am57xevmboard.rc \
+	device/ti/am57xevm/init.am57xevmboard.usb.rc:root/init.am57xevmboard.usb.rc \
+	device/ti/am57xevm/ueventd.am57xevmboard.rc:root/ueventd.am57xevmboard.rc \
 	device/ti/am57xevm/fstab.am57xevmboard:root/fstab.am57xevmboard \
 	device/ti/am57xevm/media_profiles.xml:system/etc/media_profiles.xml \
 	device/ti/am57xevm/media_codecs.xml:system/etc/media_codecs.xml \
@@ -68,7 +68,7 @@ PRODUCT_COPY_FILES += \
 
 # cpuset configuration
 PRODUCT_COPY_FILES += \
-	device/ti/am57xevm/init.am57xevmboard.cpuset.sh:vendor/bin/init.am57xevmboard.cpuset.sh
+	device/ti/am57xevm/init.am57xevmboard.cpuset.sh:system/bin/init.am57xevmboard.cpuset.sh
 
 
 PRODUCT_PROPERTY_OVERRIDES := \
