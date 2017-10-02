@@ -38,37 +38,37 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES := \
 	$(LOCAL_KERNEL):kernel \
-	device/ti/am57xevm/tablet_core_hardware_am57xevm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tablet_core_hardware_am57xevm.xml \
-	device/ti/am57xevm/manifest.xml:$(TARGET_COPY_OUT_VENDOR)/manifest.xml \
-	device/ti/am57xevm/init.am57xevmboard.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.am57xevmboard.rc \
-	device/ti/am57xevm/init.am57xevmboard.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.am57xevmboard.usb.rc \
-	device/ti/am57xevm/ueventd.am57xevmboard.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
-	device/ti/am57xevm/fstab.am57xevmboard:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.am57xevmboard \
-	device/ti/am57xevm/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
-	device/ti/am57xevm/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
-	device/ti/jacinto6evm/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
-	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
-	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
-	frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
-	frameworks/native/data/etc/android.hardware.wifi.direct.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.direct.xml \
-	frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml \
-	frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
-	frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml \
-	frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml \
-	device/ti/am57xevm/pixcir_tangoc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/pixcir_tangoc.idc \
+	device/ti/am57xevm/tablet_core_hardware_am57xevm.xml:system/etc/permissions/tablet_core_hardware_am57xevm.xml \
+	device/ti/am57xevm/manifest.xml:vendor/manifest.xml \
+	device/ti/am57xevm/init.am57xevmboard.rc:vendor/etc/init/hw/init.am57xevmboard.rc \
+	device/ti/am57xevm/init.am57xevmboard.usb.rc:vendor/etc/init/hw/init.am57xevmboard.usb.rc \
+	device/ti/am57xevm/ueventd.am57xevmboard.rc:vendor/ueventd.rc \
+	device/ti/am57xevm/fstab.am57xevmboard:root/fstab.am57xevmboard \
+	device/ti/am57xevm/media_profiles.xml:system/etc/media_profiles.xml \
+	device/ti/am57xevm/media_codecs.xml:system/etc/media_codecs.xml \
+	device/ti/jacinto6evm/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
+	frameworks/native/data/etc/android.software.freeform_window_management.xml:system/etc/permissions/android.software.freeform_window_management.xml \
+	device/ti/am57xevm/pixcir_tangoc.idc:system/usr/idc/pixcir_tangoc.idc \
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/android.hardware.camera.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.xml
+	frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml
 
 # Audio
 PRODUCT_COPY_FILES += \
-	device/ti/am57xevm/audio/primary/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml \
-	device/ti/am57xevm/audio/audio_policy.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy.conf
+	device/ti/am57xevm/audio/primary/mixer_paths.xml:vendor/etc/mixer_paths.xml \
+	device/ti/am57xevm/audio/audio_policy.conf:vendor/etc/audio_policy.conf
 
 # cpuset configuration
 PRODUCT_COPY_FILES += \
-	device/ti/am57xevm/init.am57xevmboard.cpuset.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.am57xevmboard.cpuset.sh
+	device/ti/am57xevm/init.am57xevmboard.cpuset.sh:vendor/bin/init.am57xevmboard.cpuset.sh
 
 
 PRODUCT_PROPERTY_OVERRIDES := \
