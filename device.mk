@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Audio Post Processing Engine (APPE)
+APPE_AUDIO := false
+
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 LOCAL_KERNEL := $(KERNELDIR)/arch/arm/boot/zImage
 else
@@ -83,6 +86,7 @@ PRODUCT_COPY_FILES += \
 	device/ti/am57xevm/audio/primary/mixer_paths.xml:system/etc/mixer_paths.xml \
 	device/ti/am57xevm/audio/primary/audio_policy_configuration.xml:system/etc/primary_audio_policy_configuration.xml \
 	device/ti/am57xevm/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml
+
 
 # cpuset configuration
 PRODUCT_COPY_FILES += \
