@@ -154,6 +154,8 @@ PRODUCT_PACKAGES += \
 	libtiipcutils \
 	libtitransportrpmsg
 
+PRODUCT_PACKAGES += toybox_vendor
+
 # Launcher3
 PRODUCT_PACKAGES += Launcher3 \
 		WallpaperPicker
