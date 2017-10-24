@@ -103,6 +103,9 @@ PRODUCT_CHARACTERISTICS := tablet,nosdcard
 DEVICE_PACKAGE_OVERLAYS := \
 	device/ti/am57xevm/overlay
 
+PRODUCT_ENFORCE_RRO_TARGETS := \
+	framework-res
+
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
