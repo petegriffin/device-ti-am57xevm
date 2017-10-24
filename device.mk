@@ -48,7 +48,7 @@ PRODUCT_COPY_FILES := \
 	device/ti/am57xevm/fstab.am57xevmboard:root/fstab.am57xevmboard \
 	device/ti/am57xevm/media_profiles.xml:system/etc/media_profiles.xml \
 	device/ti/am57xevm/media_codecs.xml:system/etc/media_codecs.xml \
-	device/ti/jacinto6evm/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+	device/ti/am57xevm/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
 	frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
@@ -58,6 +58,14 @@ PRODUCT_COPY_FILES := \
 	frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
 	frameworks/native/data/etc/android.software.freeform_window_management.xml:system/etc/permissions/android.software.freeform_window_management.xml \
 	device/ti/am57xevm/pixcir_tangoc.idc:system/usr/idc/pixcir_tangoc.idc \
+
+# init.rc for recovery image
+PRODUCT_COPY_FILES += \
+	device/ti/am57xevm/init.recovery.am57xevmboard.rc:root/init.recovery.am57xevmboard.rc
+
+# Static modprobe for recovery image
+PRODUCT_PACKAGES += \
+	toybox_static
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
