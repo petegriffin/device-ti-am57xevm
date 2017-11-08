@@ -31,9 +31,9 @@ on boot
 on fs
     mount_all /fstab.am57xevmboard
 
-on late-init
+# on late-init
 # Load modules
-    exec u:r:modprobe:s0 -- /vendor/bin/modprobe -a -d \
+#    exec u:r:modprobe:s0 -- /vendor/bin/modprobe -a -d \
          /vendor/lib/modules scsi_mod.ko usb-storage.ko sd_mod.ko \
                              dra7-evm-encoder-tpd12s015.ko encoder-sii9022.ko encoder-tc358768.ko encoder-tpd12s015.ko \
                              ti-fpd3-serdes.ko \
