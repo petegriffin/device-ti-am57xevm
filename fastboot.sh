@@ -79,30 +79,35 @@ elif [ ${cputype} = "" ] || [ ${cputype} = "GP" ]; then
 fi
 
 # Based on cpu, decide the dtb to flash, default fall back to J6 and LCD 10
-if [ ${cpu} = "J6ECO" ]; then
+
+if [ ${cpu} = "DRA722" ]; then
 	if [ ${boardrev} = "C" ]; then
-		environment="${PRODUCT_OUT}dra72-evm-lcd-osd.dtb"
+		environment="${PRODUCT_OUT}dra72-evm-revc-lcd-osd101t2045.dtb"
+	elif [ ${boardrev} = "A" ]; then
+		environment="${PRODUCT_OUT}dra71-evm-lcd-auo-g101evn01.0.dtb"
 	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
 		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
 	else
-		environment="${PRODUCT_OUT}dra72-evm-lcd10.dtb"
+		environment="${PRODUCT_OUT}dra72-evm-lcd-lg.dtb"
 	fi
-else
+elif [ ${cpu} = "DRA752" ]; then
 	if [ ${boardrev} = "H" ]; then
 		environment="${PRODUCT_OUT}dra7-evm-lcd-osd.dtb"
-	else
+	elif [ ${boardrev} = "A.30" ]; then
 		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
+	else
+		environment="${PRODUCT_OUT}dra7-evm-lcd-lg.dtb"
 	fi
-fi
-
-if [ ${cpu} = "J6" ]; then
-        if [ ${boardrev} = "A.30" ]; then
-                environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
-	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
-		environment="${PRODUCT_OUT}am572x-idk-lcd-osd101t2587.dtb"
-	elif [ ${boardrev} = "B.10" ]; then
-		environment="${PRODUCT_OUT}am57xx-beagle-x15-revb1.dtb"
+elif [ ${cpu} = "DRA762" ]; then
+	if [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+                environment="${PRODUCT_OUT}am574x-idk-lcd-osd101t2587.dtb"
+	else
+	environment="${PRODUCT_OUT}dra76-evm.dtb"
 	fi
+else
+	echo "CPU not detected, no matching dtb file found"
+	echo "flashing default dtb, Review and Reflash correct dtb"
+	environment="${PRODUCT_OUT}dra7-evm-lcd-osd.dtb"
 fi
 
 # Create the filename
