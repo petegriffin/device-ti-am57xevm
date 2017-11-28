@@ -88,21 +88,21 @@ if [ ${cpu} = "DRA722" ]; then
 	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
 		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
 	else
-		environment="${PRODUCT_OUT}dra72-evm-lcd-lg.dtb"
+		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
 	fi
 elif [ ${cpu} = "DRA752" ]; then
 	if [ ${boardrev} = "H" ]; then
 		environment="${PRODUCT_OUT}dra7-evm-lcd-osd.dtb"
-	elif [ ${boardrev} = "A.30" ]; then
+	elif [ ${boardrev} = "A" ]; then
 		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
 	else
-		environment="${PRODUCT_OUT}dra7-evm-lcd-lg.dtb"
+		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
 	fi
 elif [ ${cpu} = "DRA762" ]; then
 	if [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
                 environment="${PRODUCT_OUT}am574x-idk-lcd-osd101t2587.dtb"
 	else
-	environment="${PRODUCT_OUT}dra76-evm.dtb"
+	environment="${PRODUCT_OUT}am574-idk.dtb"
 	fi
 else
 	echo "CPU not detected, no matching dtb file found"
