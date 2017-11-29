@@ -118,7 +118,14 @@ BOARD_VENDOR_KERNEL_MODULES := \
 	$(KERNELDIR)/drivers/gpio/gpio-pca953x.ko \
 	$(KERNELDIR)/drivers/media/i2c/ov1063x.ko \
 	$(KERNELDIR)/drivers/media/i2c/ov490.ko \
-	$(KERNELDIR)/drivers/media/i2c/tvp5158.ko
+	$(KERNELDIR)/drivers/media/i2c/tvp5158.ko \
+	$(KERNELDIR)/drivers/remoteproc/pruss_intc.ko \
+	$(KERNELDIR)/drivers/remoteproc/pruss.ko \
+	$(KERNELDIR)/drivers/rpmsg/rpmsg_pru.ko \
+	$(KERNELDIR)/drivers/remoteproc/pru_rproc.ko \
+	$(KERNELDIR)/drivers/net/ethernet/ti/prueth.ko
+
+
 
 BOARD_RECOVERY_KERNEL_MODULES := \
 	$(KERNELDIR)/drivers/scsi/scsi_mod.ko \

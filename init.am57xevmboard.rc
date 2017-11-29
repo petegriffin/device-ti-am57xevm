@@ -42,7 +42,8 @@ on late-init
                              edt-ft5x06.ko goodix.ko input-polldev.ko ldc3001_ts.ko pixcir_i2c_ts.ko \
                              ov1063x.ko ov490.ko tvp5158.ko \
                              gpio-pca953x.ko \
-                             snd-soc-tlv320aic3x.ko
+                             snd-soc-tlv320aic3x.ko \
+                             pruss_intc.ko pruss.ko rpmsg_pru.ko pru_rproc.ko prueth.ko
 
 service pvrsrvinit /vendor/bin/pvrsrvinit
     class core
