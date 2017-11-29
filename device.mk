@@ -129,7 +129,7 @@ PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=240
+	ro.sf.lcd_density=120
 
 # WI-Fi
 PRODUCT_PACKAGES += \
