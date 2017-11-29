@@ -85,7 +85,7 @@ if [ ${cpu} = "DRA722" ]; then
 		environment="${PRODUCT_OUT}dra72-evm-revc-lcd-osd101t2045.dtb"
 	elif [ ${boardrev} = "A" ]; then
 		environment="${PRODUCT_OUT}dra71-evm-lcd-auo-g101evn01.0.dtb"
-	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+	elif [ ${boardrev} = "1" ]; then
 		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
 	else
 		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
@@ -99,7 +99,7 @@ elif [ ${cpu} = "DRA752" ]; then
 		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
 	fi
 elif [ ${cpu} = "DRA762" ]; then
-	if [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+	if [ ${boardrev} = "1" ]; then
                 environment="${PRODUCT_OUT}am574x-idk-lcd-osd101t2587.dtb"
 	else
 	environment="${PRODUCT_OUT}am574-idk.dtb"
@@ -164,7 +164,7 @@ fi
 echo "Create GPT partition table"
 ${FASTBOOT} oem format
 
-if [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+if [ ${boardrev} = "1" ]; then
         echo "Setting target for bootloader to spi"
         ${FASTBOOT} oem spi
 else
