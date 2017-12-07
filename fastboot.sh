@@ -95,6 +95,8 @@ elif [ ${cpu} = "DRA752" ]; then
 		environment="${PRODUCT_OUT}dra7-evm-lcd-osd.dtb"
 	elif [ ${boardrev} = "A" ]; then
 		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
+	elif [ ${boardrev} = "1" ]; then
+		environment="${PRODUCT_OUT}am572x-idk-lcd-osd101t2587.dtb"
 	else
 		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
 	fi
