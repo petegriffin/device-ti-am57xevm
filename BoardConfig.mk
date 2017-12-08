@@ -80,8 +80,7 @@ BOARD_SOFTAP_DEVICE         := wl12xx_mac80211
 endif
 
 BOARD_SEPOLICY_DIRS += \
-	device/ti/jacinto6evm/sepolicy \
-	packages/services/Car/car_product/sepolicy
+	device/ti/jacinto6evm/sepolicy
 
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
