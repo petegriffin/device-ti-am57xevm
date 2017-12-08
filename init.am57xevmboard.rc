@@ -1,12 +1,7 @@
-import /init.am57xevmboard.usb.rc
+import /vendor/etc/init/hw/init.am57xevmboard.usb.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
-
-on init
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
 
 on post-fs-data
 
@@ -18,18 +13,22 @@ on post-fs-data
     mkdir /data/lad 0770 system media
     mkdir /data/lad/LAD 0770 system media
 
-# enabling thermal zone for mpu
+    #enabling thermal zone for mpu
     write /sys/class/thermal/thermal_zone0/mode enabled
 
 on boot
+
     # execute script to set cpuset configuration
-    exec - root root system -- /system/bin/init.am57xevmboard.cpuset.sh
+    exec - root root system -- /vendor/bin/init.am57xevmboard.cpuset.sh
+
+    # CMEM for Radio
+    insmod /vendor/lib/modules/cmemk.ko phys_start=0x95400000 phys_end=0x95800000 pools=1x147456,2x131072,25x65536,40x4096 allowOverlap=1
 
     # 2d blitter
     insmod /system/lib/modules/galcore.ko physSize=0xc0000000
 
 on fs
-    mount_all /fstab.am57xevmboard
+    mount_all /vendor/etc/fstab.am57xevmboard
 
 #on late-init
 # Load modules
@@ -94,5 +93,18 @@ service dhcpcd_eth0 /system/bin/dhcpcd -ABDKL
 
 service dhcpcd_eth1 /system/bin/dhcpcd -ABDKL
     class main
+    disabled
+    oneshot
+
+service lad_dra7xx /vendor/bin/lad_dra7xx -g
+    class main
+    user system
+    group media
+    oneshot
+
+service vis /vendor/bin/RadioApp -h eth
+    class main
+    user system
+    group media inet
     disabled
     oneshot

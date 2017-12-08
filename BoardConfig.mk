@@ -66,7 +66,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RELEASETOOLS_EXTENSIONS := device/ti/am57xevm
 
 # Connectivity - Wi-Fi
-USES_TI_MAC80211 := false
+USES_TI_MAC80211 := true
 ifeq ($(USES_TI_MAC80211),true)
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
@@ -80,7 +80,10 @@ BOARD_SOFTAP_DEVICE         := wl12xx_mac80211
 endif
 
 BOARD_SEPOLICY_DIRS += \
-	 device/ti/am57xevm/sepolicy \
+	device/ti/jacinto6evm/sepolicy \
+	packages/services/Car/car_product/sepolicy
+
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
 # lidbrm driver
 BOARD_GPU_DRIVERS := omapdrm
@@ -95,7 +98,6 @@ BOARD_VENDOR_KERNEL_MODULES := \
 	$(KERNELDIR)/drivers/usb/storage/usb-storage.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/connector-hdmi.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/dra7-evm-encoder-tpd12s015.ko \
-	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/encoder-sii9022.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/encoder-tc358768.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/encoder-tpd12s015.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/panel-dpi.ko \
@@ -108,10 +110,19 @@ BOARD_VENDOR_KERNEL_MODULES := \
 	$(KERNELDIR)/drivers/input/touchscreen/edt-ft5x06.ko \
 	$(KERNELDIR)/drivers/input/touchscreen/goodix.ko \
 	$(KERNELDIR)/drivers/input/touchscreen/ldc3001_ts.ko \
-	$(KERNELDIR)/drivers/input/touchscreen/pixcir_i2c_ts.ko
-#	$(KERNELDIR)/drivers/net/wireless/ti/wl18xx/wl18xx.ko \
-#	$(KERNELDIR)/drivers/net/wireless/ti/wlcore/wlcore.ko \
-#	$(KERNELDIR)/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko
+	$(KERNELDIR)/drivers/input/touchscreen/pixcir_i2c_ts.ko \
+	$(KERNELDIR)/sound/soc/codecs/snd-soc-tlv320aic3x.ko \
+	$(KERNELDIR)/drivers/gpio/gpio-pca953x.ko \
+	$(KERNELDIR)/drivers/media/i2c/ov1063x.ko \
+	$(KERNELDIR)/drivers/media/i2c/ov490.ko \
+	$(KERNELDIR)/drivers/media/i2c/tvp5158.ko \
+	$(KERNELDIR)/drivers/remoteproc/pruss_intc.ko \
+	$(KERNELDIR)/drivers/remoteproc/pruss.ko \
+	$(KERNELDIR)/drivers/rpmsg/rpmsg_pru.ko \
+	$(KERNELDIR)/drivers/remoteproc/pru_rproc.ko \
+	$(KERNELDIR)/drivers/net/ethernet/ti/prueth.ko
+
+
 
 BOARD_RECOVERY_KERNEL_MODULES := \
 #	$(KERNELDIR)/drivers/scsi/scsi_mod.ko \
@@ -122,6 +133,7 @@ BOARD_RECOVERY_KERNEL_MODULES := \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/encoder-tc358768.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/encoder-tpd12s015.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/panel-dpi.ko \
+	$(KERNELDIR)/drivers/video/serdes/ti-fpd3-serdes.ko \
 	$(KERNELDIR)/drivers/leds/leds-tlc591xx.ko \
 	$(KERNELDIR)/drivers/video/backlight/gpio_backlight.ko \
 	$(KERNELDIR)/drivers/video/backlight/led_bl.ko \

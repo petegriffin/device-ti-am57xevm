@@ -63,13 +63,13 @@ fi
 #product=`${FASTBOOT} getvar product 2>&1 | grep product | awk '{print$2}'`
 cpu=`${FASTBOOT} getvar cpu 2>&1         | grep cpu     | awk '{print$2}'`
 cputype=`${FASTBOOT} getvar secure 2>&1  | grep secure  | awk '{print$2}'`
-boardrev=`${FASTBOOT} getvar board_rev 2>&1  | grep board_rev  | awk '{print$2}'`
+boardrev=`${FASTBOOT} getvar board_rev 2>&1  | grep board_rev  | awk '{print$2}' | cut -b 1`
 
 
 # Make EMU = HS
 if [ ${cputype} = "EMU" ] || [ ${cputype} = "HS" ]; then
 	cputype="HS"
-	xloader="${PRODUCT_OUT}${cputype}_QSPI_MLO"
+	xloader="${PRODUCT_OUT}u-boot-spl_HS_X-LOADER"
 	uboot="${PRODUCT_OUT}${cputype}_u-boot.img"
 # If fastboot does not support getvar default to GP
 elif [ ${cputype} = "" ] || [ ${cputype} = "GP" ]; then
@@ -79,30 +79,35 @@ elif [ ${cputype} = "" ] || [ ${cputype} = "GP" ]; then
 fi
 
 # Based on cpu, decide the dtb to flash, default fall back to J6 and LCD 10
-if [ ${cpu} = "J6ECO" ]; then
+
+if [ ${cpu} = "DRA722" ]; then
 	if [ ${boardrev} = "C" ]; then
-		environment="${PRODUCT_OUT}dra72-evm-lcd-osd.dtb"
-	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+		environment="${PRODUCT_OUT}dra72-evm-revc-lcd-osd101t2045.dtb"
+	elif [ ${boardrev} = "A" ]; then
+		environment="${PRODUCT_OUT}dra71-evm-lcd-auo-g101evn01.0.dtb"
+	elif [ ${boardrev} = "1" ]; then
 		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
 	else
-		environment="${PRODUCT_OUT}dra72-evm-lcd10.dtb"
+		environment="${PRODUCT_OUT}am571x-idk-lcd-osd101t2587.dtb"
 	fi
-else
+elif [ ${cpu} = "DRA752" ]; then
 	if [ ${boardrev} = "H" ]; then
 		environment="${PRODUCT_OUT}dra7-evm-lcd-osd.dtb"
+	elif [ ${boardrev} = "A" ]; then
+		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
 	else
 		environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
 	fi
-fi
-
-if [ ${cpu} = "J6" ]; then
-        if [ ${boardrev} = "A.30" ]; then
-                environment="${PRODUCT_OUT}am57xx-evm-reva3.dtb"
-	elif [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
-		environment="${PRODUCT_OUT}am572x-idk-lcd-osd101t2587.dtb"
-	elif [ ${boardrev} = "B.10" ]; then
-		environment="${PRODUCT_OUT}am57xx-beagle-x15-revb1.dtb"
+elif [ ${cpu} = "DRA762" ]; then
+	if [ ${boardrev} = "1" ]; then
+                environment="${PRODUCT_OUT}am574x-idk-lcd-osd101t2587.dtb"
+	else
+	environment="${PRODUCT_OUT}am574-idk.dtb"
 	fi
+else
+	echo "CPU not detected, no matching dtb file found"
+	echo "flashing default dtb, Review and Reflash correct dtb"
+	environment="${PRODUCT_OUT}dra7-evm-lcd-osd.dtb"
 fi
 
 # Create the filename
@@ -159,7 +164,7 @@ fi
 echo "Create GPT partition table"
 ${FASTBOOT} oem format
 
-if [ ${boardrev} = "1.3A" ] || [ ${boardrev} = "1.3B" ]; then
+if [ ${boardrev} = "1" ]; then
         echo "Setting target for bootloader to spi"
         ${FASTBOOT} oem spi
 else
