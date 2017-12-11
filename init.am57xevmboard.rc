@@ -30,15 +30,20 @@ on boot
 on fs
     mount_all /vendor/etc/fstab.am57xevmboard
 
-#on late-init
-# Load modules
-#    exec u:r:modprobe:s0 -- /vendor/bin/modprobe -a -d \
-#         /vendor/lib/modules scsi_mod.ko usb-storage.ko sd_mod.ko \
-#                             dra7-evm-encoder-tpd12s015.ko encoder-sii9022.ko encoder-tc358768.ko encoder-tpd12s015.ko \
-#                             ti-fpd3-serdes.ko \
-#                             connector-hdmi.ko \
-#                             panel-dpi.ko leds-tlc591xx.ko gpio_backlight.ko led_bl.ko pwm_bl.ko \
-#                             edt-ft5x06.ko goodix.ko input-polldev.ko ldc3001_ts.ko pixcir_i2c_ts.ko
+on late-init
+    # Load modules
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d \
+         /vendor/lib/modules wl18xx.ko wlcore.ko wlcore_sdio.ko \
+                             scsi_mod.ko usb-storage.ko sd_mod.ko \
+                             dra7-evm-encoder-tpd12s015.ko encoder-tc358768.ko encoder-tpd12s015.ko \
+                             ti-fpd3-serdes.ko \
+                             connector-hdmi.ko \
+                             panel-dpi.ko leds-tlc591xx.ko gpio_backlight.ko led_bl.ko pwm_bl.ko \
+                             edt-ft5x06.ko goodix.ko input-polldev.ko ldc3001_ts.ko pixcir_i2c_ts.ko \
+                             ov1063x.ko ov490.ko tvp5158.ko \
+                             gpio-pca953x.ko \
+                             snd-soc-tlv320aic3x.ko \
+                             pruss_intc.ko pruss.ko rpmsg_pru.ko pru_rproc.ko prueth.ko
 
 service pvrsrvinit /vendor/bin/pvrsrvinit
     class core
