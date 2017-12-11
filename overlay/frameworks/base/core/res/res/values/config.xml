@@ -26,6 +26,14 @@
     <!-- Arbitrary max 8 users. -->
     <integer name="config_multiuserMaximumUsers">8</integer>
 
+    <!-- Car Mode -->
+    <integer name="config_defaultUiModeType">3</integer>
+    <!-- Can't leave car mode -->
+    <bool name="config_lockUiMode">true</bool>
+
+    <!-- This device is not "voice capable"; it's data-only. -->
+    <bool name="config_voice_capable">false</bool>
+
     <!-- This device does not allow sms service. -->
     <bool name="config_sms_capable">false</bool>
 
