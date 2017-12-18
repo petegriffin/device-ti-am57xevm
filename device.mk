@@ -189,7 +189,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	media.aac_51_output_enabled=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	android.car.drawer.unlimited=true \
+#	android.car.drawer.unlimited=true \
 	android.car.hvac.demo=true \
 	com.android.car.radio.demo=true \
 	com.android.car.radio.demo.dual=true
