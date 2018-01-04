@@ -92,7 +92,7 @@ VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
 SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 
 BOARD_VENDOR_KERNEL_MODULES := \
-	$(KERNELDIR)/drivers/net/wireless/ti/wl18xx/wl18xx.ko \
+#	$(KERNELDIR)/drivers/net/wireless/ti/wl18xx/wl18xx.ko \
 	$(KERNELDIR)/drivers/net/wireless/ti/wlcore/wlcore.ko \
 	$(KERNELDIR)/drivers/net/wireless/ti/wlcore/wlcore_sdio.ko\
 	$(KERNELDIR)/drivers/scsi/scsi_mod.ko \
@@ -127,7 +127,7 @@ BOARD_VENDOR_KERNEL_MODULES := \
 
 
 BOARD_RECOVERY_KERNEL_MODULES := \
-	$(KERNELDIR)/drivers/scsi/scsi_mod.ko \
+#	$(KERNELDIR)/drivers/scsi/scsi_mod.ko \
 	$(KERNELDIR)/drivers/scsi/sd_mod.ko \
 	$(KERNELDIR)/drivers/usb/storage/usb-storage.ko \
 	$(KERNELDIR)/drivers/gpu/drm/omapdrm/displays/connector-hdmi.ko \
