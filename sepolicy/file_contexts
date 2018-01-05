@@ -6,6 +6,13 @@
 #Console
 /dev/ttyS2			u:object_r:console_device:s0
 
+#optee
+/system/bin/tee-supplicant	u:object_r:tee_exec:s0
+/system/bin/xtest		u:object_r:tee_exec:s0
+/dev/teepriv[0-9]*		u:object_r:tee_device:s0
+/dev/tee[0-9]*			u:object_r:tee_device:s0
+/data/tee(/.*)?			u:object_r:tee_data_file:s0
+
 #Graphics
 /dev/dri/card0			u:object_r:gpu_device:s0
 /dev/dri/controlD64		u:object_r:gpu_device:s0

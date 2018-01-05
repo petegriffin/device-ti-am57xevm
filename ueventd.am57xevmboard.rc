@@ -29,3 +29,6 @@
 # ipc
 /dev/uio0                 0660   system media
 /dev/hwspinlock           0660   system media
+
+/dev/tee0                 0660   shell shell
+/dev/teepriv0             0660   shell shell

@@ -28,6 +28,11 @@ endif
 
 USE_XML_AUDIO_POLICY_CONF := 1
 
+ifeq ($(TARGET_AM57XEVM_HS_BOARD), true)
+# Include OP-TEE packages
+$(call inherit-product-if-exists, device/ti/am57xevm/optee-packages.mk)
+endif
+
 PRODUCT_PACKAGES += \
    android.hardware.wifi@1.0-service \
    android.hardware.graphics.allocator@2.0-impl \
